@@ -14,9 +14,9 @@ return new class extends Migration
         
         Schema::create('paniers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('panier_id')->constrained('paniers')->onDelete('cascade');
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->foreignId('produit_id')->constrained('produits')->onDelete('cascade');
-            $table->foreignId('client_id')->constrained('client')->onDelete('cascade');
+           
             $table->decimal('quantite',10,2);
             $table->decimal('prix_total',10,2);
             $table->date('date_ajout');

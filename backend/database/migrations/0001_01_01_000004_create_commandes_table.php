@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained('   s')->onDelete('cascade');
-            $table->enum('statut', ['en attente','confirmé','livré']);
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+            $table->enum('statut', ['en attente','confirmé','livré'])->default('en attente');
             $table->date('date_commande')->index();   
             $table->string('adresse_livraison');
             $table->timestamps();
