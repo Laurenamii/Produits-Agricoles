@@ -1,30 +1,23 @@
 <?php
-
 namespace App\Models;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class User extends Model
+class User extends Authenticatable
 {
-    use HasFactory;
-
     protected $fillable = [
-        'nom',
-        'prenoms',
-        'email',
-        'role'
+        'nom', 'prenom', 'email', 'password', 
+        'telephone', 'adresse', 'role'
     ];
 
-    public function isAdmin(){
-        return $this -> role === 'admin';
+    protected $hidden = ['password'];
+
+    public function producteur()
+    {
+        return $this->hasOne(Producteur::class);
     }
 
-    public function isProducteur(){
-        return $this -> role === 'producteur';
+    public function client()
+    {
+        return $this->hasOne(Client::class);
     }
-    public function isClient(){
-        return $this -> role === 'client';
-    }
-
 }

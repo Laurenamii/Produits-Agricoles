@@ -10,12 +10,26 @@ class Produit extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom','categorie','quantite','prix','producteur_id',
+        'nom','producteur_id','description','categorie','prix_unitaire','unite','quantite_stock','date_ajout',
     ];
-    public function producteur(){
-        return $this -> belongsTo(Producteur::class);
+
+
+    public function producteur()
+    {
+        return $this->belongsTo(Producteur::class);
     }
-    public function vente(){
-        return $this -> hasMany(Vente::class);
+
+    public function lignesCommande()
+    {
+        return $this->hasMany(Ligne_Commande::class);
     }
+
+    public function paniers()
+    {
+        return $this->hasMany(Panier::class);
+    }
+
+   
+     
+   
 }

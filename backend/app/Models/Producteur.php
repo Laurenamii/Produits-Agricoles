@@ -10,9 +10,14 @@ class Producteur extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom','prenom','contact','adresse', 'email'
+       'user_id','nom_exploitation','type_production',
+
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function produits(){
         return $this ->hasMany(Produit::class);
     }
